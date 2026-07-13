@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 use_type_checking = "{{ cookiecutter.use_type_checking }}"
 
