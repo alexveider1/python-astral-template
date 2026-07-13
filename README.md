@@ -38,6 +38,7 @@ You will be prompted for:
 ├── .env
 ├── .env.example
 ├── .gitignore
+├── .python-version    # pins the chosen Python version
 ├── LICENSE            # MIT, filled with author + current year
 ├── README.md
 ├── markdownlint.jsonc
@@ -46,8 +47,12 @@ You will be prompted for:
 └── ty.toml            # only when type checking is enabled
 ```
 
-The chosen `python_version` flows into `requires-python` (pyproject.toml),
-`target-version` (ruff.toml), and `python-version` (ty.toml).
+The chosen `python_version` flows into `requires-python` (pyproject.toml,
+pinned as `==<version>.*`), `.python-version`, `target-version` (ruff.toml),
+and `python-version` (ty.toml).
+
+A post-generation hook initializes a git repository and creates a `.venv/`
+with `uv venv` (using the pinned Python version).
 
 If you answer `n` to `use_type_checking`, a post-generation hook removes `ty`
 from the dev dependencies, deletes `ty.toml`, and drops the type-checking

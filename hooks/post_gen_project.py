@@ -20,4 +20,15 @@ def init_git_repo():
         return
 
 
+def create_venv():
+    """Create a virtual environment using the pinned Python version."""
+    try:
+        subprocess.run(["uv", "venv"], check=True)
+    except subprocess.CalledProcessError:
+        print("uv venv failed; skipping virtual environment creation.")
+    except FileNotFoundError:
+        print("uv not found; skipping virtual environment creation.")
+
+
 init_git_repo()
+create_venv()
